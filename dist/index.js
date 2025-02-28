@@ -19,14 +19,14 @@ export const getCountriesByContinents = async (continent) => {
     });
     console.log(countries);
 };
-// export const getCitiesByCountryCode = async(countryCode: string) => {
+// export const getCitiesByCountryCode = async (countryCode: string) => {
 //     const cities = await prisma.city.findMany({
 //         where: {
 //             country: countries,
 //         },
 //     });
-//     console.log(cities)
-// }
+//     console.log(cities);
+// };
 // await getCountries();
 // await getCountriesByContinents('Europe');
 // getCitiesByCountryCode('ESP')
