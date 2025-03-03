@@ -17,11 +17,13 @@ const prisma = new PrismaClient().$extends({
     },
 });
 
+// getCountries();
 export const getCountries = async () => {
     const countries = await prisma.country.findMany();
     console.log(countries);
 };
 
+// getCountriesByContinents('Europe');
 const selectOptions: Prisma.CountrySelect = {
     code: true,
     name: true,
@@ -40,6 +42,7 @@ export const getCountriesByContinents = async (
     console.log(countries);
 };
 
+// getCitiesByCountryCode('ESP');
 const omitOptions: Prisma.CityOmit = {
     id: true,
     countryCode: true,
@@ -53,6 +56,7 @@ export const getCitiesByCountryCode = async (countryCode: string) => {
     console.log(cities);
 };
 
+// getCitiesFromContinentWithCountryName('Europe');
 export const getCitiesFromContinentWithCountryName = async (
     continent: $Enums.CountryContinent,
 ) => {
@@ -75,6 +79,7 @@ export const getCitiesFromContinentWithCountryName = async (
     console.log(cities);
 };
 
+// getCitiesWithPopulationGreaterThan(9_000_000);
 export const getCitiesWithPopulationGreaterThan = async (limit: number) => {
     const cities = await prisma.city.findMany({
         omit: omitOptions,
@@ -88,6 +93,7 @@ export const getCitiesWithPopulationGreaterThan = async (limit: number) => {
     console.log(cities);
 };
 
+// getCountriesWithDensityByContinent('Europe');
 export const getCountriesWithDensityByContinent = async (
     continent: $Enums.CountryContinent,
 ) => {
@@ -115,6 +121,7 @@ export const getCountriesWithDensityByContinent = async (
     // );
 };
 
+// getCitiesPoliticsWithPopulationGreaterThan(3_000_000, 'Europe');
 export const getCitiesPoliticsWithPopulationGreaterThan = async (
     limit: number,
     continent: $Enums.CountryContinent,
@@ -142,6 +149,7 @@ export const getCitiesPoliticsWithPopulationGreaterThan = async (
     console.log(cities);
 };
 
+// Añadimos al anterior las lenguas oficiales del país
 export const getCitiesPoliticsLanguageWithPopulationGreaterThan = async (
     limit: number,
     continent: $Enums.CountryContinent,
@@ -179,6 +187,8 @@ export const getCitiesPoliticsLanguageWithPopulationGreaterThan = async (
     console.log(JSON.stringify(cities));
 };
 
+// getWorldSurfacePopulation();
+// Cual es la superficie y población total del mundo
 export const getWorldSurfacePopulation = async () => {
     // const world = await prisma.country.findMany({
     //     select: {
@@ -211,6 +221,7 @@ export const getWorldSurfacePopulation = async () => {
     console.log(aggregations);
 };
 
+// Cual es la superficie y la población de cada continente
 export const getContinentsSurfaceAndPopulation = async () => {
     // const world = await prisma.country.findMany({
     //     select: {
@@ -248,31 +259,9 @@ export const getContinentsSurfaceAndPopulation = async () => {
     console.log(groupUsers);
 };
 
-// getCountries();
-// getCountriesByContinents('Europe');
-
-// getCitiesByCountryCode('ESP');
-// getCitiesFromContinentWithCountryName('Europe');
-
-// getCitiesWithPopulationGreaterThan(9_000_000);
-
 // Listado de países de un continente con su nombre, población extensión y densidad
-
-// getCountriesWithDensityByContinent('Europe');
 
 // Nombre de la ciudad, país y su forma de gobierno
 // de las ciudades de más de x habitantes de z continente
-
-// getCitiesPoliticsWithPopulationGreaterThan(3_000_000, 'Europe');
-
-// Añadimos al anterior las lenguas oficiales del país
-
-// getCitiesPoliticsLanguageWithPopulationGreaterThan(3_000_000, 'Europe');
-
-// Cual es la superficie y población total del mundo
-
-// getWorldSurfacePopulation();
-
-// Cual es la superficie y la población de cada continente
 
 getContinentsSurfaceAndPopulation();
